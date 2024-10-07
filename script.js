@@ -118,7 +118,7 @@ async function displayBehaviourDecision(dayOffset, timePeriod) {
         // Check if the location has a forecast array
         if (Array.isArray(location.forecast)) {
             location.forecast.forEach(spot => {
-                const { date, decision, lat, lon, radius, time_period } = spot;
+                const { date, decision, lat, lon, radius, time_period, movement_score, temperature, rain, snow, wind_speed, wind_direction, condition, most_influential_factors } = spot;
 
                 // Filter by date and time period
                 if (lat !== undefined && lon !== undefined && date === targetDateString && time_period === timePeriod) {
@@ -127,12 +127,26 @@ async function displayBehaviourDecision(dayOffset, timePeriod) {
                     const circle = L.circle([lat, lon], {
                         color: decision,
                         fillColor: decision,
-                        fillOpacity: 0.5,
+                        fillOpacity: 0.3,
                         radius: radius || 5000
                     });
 
-                    // Add popup information for each behavior circle
-                    circle.bindPopup(`<b>Behaviour Decision:</b> ${decision}<br><b>Date:</b> ${date}`);
+                  // Add popup information for each behavior circle with enhanced data
+                circle.bindPopup(`
+                     <div class="popup-content">
+                         <b>Behaviour Decision:</b> ${decision}<br>
+                         <b>Date:</b> ${date}<br>
+                         <b>Movement Score:</b> ${movement_score}<br>
+                         <b>Temperature:</b> ${temperature}°C<br>
+                         <b>Rain:</b> ${rain}mm<br>
+                         <b>Snow:</b> ${snow}cm<br>
+                         <b>Wind Speed:</b> ${wind_speed} km/h<br>
+                         <b>Wind Direction:</b> ${wind_direction}<br>
+                         <b>Condition:</b> ${condition}<br>
+                         <b>Most Influential Factors:</b> ${Array.isArray(most_influential_factors) ? most_influential_factors.join(', ') : 'None'}
+                     </div>
+                `);
+
                     behaviourCirclesLayer.addLayer(circle);
                 }
             });
