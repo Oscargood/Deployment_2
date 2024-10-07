@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildvision</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- Main container with adjustable background -->
+    <div id="container">
+        <!-- Buttons above the map -->
+        <div id="top-buttons">
+            <!-- Removed Weather Button -->
+            <button id="toggleBehaviourCircles">Animal Behaviour</button>
+            <button id="infoButton">Info</button>
+            <div id="static_text_box">General animal behaviour notes</div>
+        </div>
+
+        <!-- Day and Time Selection Display -->
+        <div id="day-time-selection">
+            Selected: <span id="day-time-text">Today Morning</span>
+        </div>
+
+        <!-- Time slider above the map -->
+        <div id="bottom-slider">
+            <input type="range" min="0" max="31" value="2" class="slider" id="timeSlider">
+        </div>
+
+        <!-- Map Section -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Welcome to Wildvision</h2>
+            <p>Wildvision gives you the information you need to increase your hunt successes. You will see animal behaviour overlays. The overlay works on a traffic light system: green indicates high animal movements, orange indicates medium animal movements, and red indicates minimal movement. This overlay is designed to let you know what animals are doing if they are in the area.</p>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
